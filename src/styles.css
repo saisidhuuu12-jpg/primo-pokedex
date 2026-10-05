@@ -19,6 +19,11 @@
  */
 
 @theme inline {
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --spacing-13: 3.25rem;
+  --shadow-poke: 0 8px 24px -8px color-mix(in oklab, var(--primary) 55%, transparent);
+  --shadow-poke-lg: 0 14px 32px -10px color-mix(in oklab, var(--primary) 65%, transparent);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -62,26 +67,26 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --radius: 0.75rem;
+  --background: oklch(0.975 0.003 260);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
+  --primary: oklch(0.6 0.22 25);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.955 0.005 260);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
   --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --accent: oklch(0.88 0.17 92);
+  --accent-foreground: oklch(0.25 0.03 260);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.929 0.013 255.508);
   --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --ring: oklch(0.6 0.22 25 / 50%);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -142,3 +147,34 @@
     color: var(--color-foreground);
   }
 }
+
+@layer base { body { font-family: var(--font-sans); } }
+
+.type-normal { --type: oklch(0.7 0.03 90); }
+.type-fire { --type: oklch(0.68 0.19 45); }
+.type-water { --type: oklch(0.62 0.15 250); }
+.type-electric { --type: oklch(0.84 0.17 92); }
+.type-grass { --type: oklch(0.7 0.17 140); }
+.type-ice { --type: oklch(0.82 0.09 200); }
+.type-fighting { --type: oklch(0.55 0.19 30); }
+.type-poison { --type: oklch(0.55 0.17 320); }
+.type-ground { --type: oklch(0.7 0.11 75); }
+.type-flying { --type: oklch(0.72 0.1 275); }
+.type-psychic { --type: oklch(0.66 0.2 0); }
+.type-bug { --type: oklch(0.7 0.16 125); }
+.type-rock { --type: oklch(0.62 0.09 85); }
+.type-ghost { --type: oklch(0.48 0.11 295); }
+.type-dragon { --type: oklch(0.5 0.2 280); }
+.type-dark { --type: oklch(0.42 0.03 50); }
+.type-steel { --type: oklch(0.7 0.03 240); }
+.type-fairy { --type: oklch(0.78 0.11 350); }
+
+.type-chip { background: var(--type); color: oklch(0.99 0 0); text-shadow: 0 1px 1px oklch(0 0 0 / 25%); }
+.poke-card { box-shadow: 0 1px 2px oklch(0 0 0 / 4%); transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, border-color .25s; }
+.poke-card:hover, .poke-card:focus-visible { transform: translateY(-4px); border-color: color-mix(in oklab, var(--type) 45%, transparent); box-shadow: 0 18px 36px -16px color-mix(in oklab, var(--type) 60%, transparent); }
+.poke-card-art { background: radial-gradient(circle at 50% 60%, color-mix(in oklab, var(--type) 22%, transparent), color-mix(in oklab, var(--type) 6%, var(--card)) 70%); }
+.detail-hero { background: linear-gradient(180deg, color-mix(in oklab, var(--type) 28%, var(--card)), var(--card)); overflow: hidden; }
+.stat-bar { background: linear-gradient(90deg, var(--type), color-mix(in oklab, var(--type) 70%, var(--accent))); transition: width .7s ease-out; }
+.header-stripe { background: linear-gradient(90deg, var(--primary) 0 60%, var(--accent) 60%); }
+.pokeball-watermark { background: radial-gradient(circle, var(--card) 0 11%, color-mix(in oklab, var(--type, var(--foreground)) 18%, transparent) 11% 15%, transparent 15%), linear-gradient(transparent 46%, color-mix(in oklab, var(--type, var(--foreground)) 18%, transparent) 46% 54%, transparent 54%); border-radius: 9999px; border: 6px solid color-mix(in oklab, var(--type, var(--foreground)) 14%, transparent); }
+.pokeball-logo { border-radius: 9999px; border: 3px solid var(--foreground); background: radial-gradient(circle, var(--card) 0 18%, var(--foreground) 18% 28%, transparent 28%), linear-gradient(var(--primary) 0 44%, var(--foreground) 44% 56%, var(--card) 56%); }
