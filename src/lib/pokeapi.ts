@@ -38,7 +38,7 @@ interface RawPokemon {
 }
 
 async function getJson<T>(url: string, signal?: AbortSignal): Promise<T> {
-  const res = await fetch(url, { signal });
+  const res = await fetch(url, signal ? { signal } : undefined);
   if (!res.ok) throw new Error(`PokéAPI request failed (${res.status})`);
   return res.json() as Promise<T>;
 }
